@@ -26,7 +26,7 @@ class TasksController < ApplicationController
     @task = @project.tasks.build(task_params)
 
     if @task.save
-      redirect_to([@task.project, @task], notice: 'Task was successfully created.')
+      redirect_to(@task.project)
     else
       render action: 'new'
     end
@@ -55,7 +55,7 @@ class TasksController < ApplicationController
     end
 
     def set_task
-      @task = @project.tasks.find(params[:id])
+      @task = current_user.projects.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
