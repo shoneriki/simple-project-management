@@ -35,7 +35,7 @@ class TasksController < ApplicationController
   # PUT projects/1/tasks/1
   def update
     if @task.update_attributes(task_params)
-      redirect_to([@task.project, @task], notice: 'Task was successfully updated.')
+      redirect_to(@task.project)
     else
       render action: 'edit'
     end
@@ -45,17 +45,17 @@ class TasksController < ApplicationController
   def destroy
     @task.destroy
 
-    redirect_to project_tasks_url(@project)
+    redirect_to @project
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_project
-      @project = Project.find(params[:project_id])
+      @project = current_user.projects.find(params[:project_id])
     end
 
     def set_task
-      @task = current_user.projects.find(params[:id])
+      @task = @project.tasks.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
