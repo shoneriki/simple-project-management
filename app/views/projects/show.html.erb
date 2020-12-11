@@ -1,4 +1,4 @@
-<%= link_to 'Back', projects_path, class: 'btn btn-light mb-3' %>
+<%= link_to 'Back', projects_path, class: 'btn btn-secondary mb-3' %>
 <div class="card">
   <!-- Project title card-->
   <div class="card-body">
@@ -6,7 +6,7 @@
       <span><%= @project.name %></span>
       <div>
         <%= link_to 'Edit', edit_project_path(@project), class: 'btn btn-light' %>
-        <%= link_to 'Destroy', @project, method: :delete, class: "btn btn-secondary", data: { confirm: "Are you sure?"}  %>
+        <%= link_to 'Destroy', @project, method: :delete, class: "btn btn-dark", data: { confirm: "Are you sure?"}  %>
       </div>
     </h2>
   <!-- End Project title card -->
@@ -25,10 +25,10 @@
       <div class="card mb-3">
         <div class="card-body">
           <div class="d-flex justify-content-between">
-            <span class="badge badge-primary mb-3"><%= task.status %></span>
+            <span class="badge badge-<%= task.badge_color %> mb-3"><%= task.status %></span>
             <div>
               <%= link_to 'Edit', edit_project_task_path(task.project, task), class: "btn btn-light btn-sm" %>
-              <%= link_to 'Destroy', [task.project, task], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-secondary btn-sm" %>
+              <%= link_to 'Destroy', [task.project, task], method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-dark btn-sm" %>
             </div>
           </div>
           <h5 class ='card-title mb-2'>
